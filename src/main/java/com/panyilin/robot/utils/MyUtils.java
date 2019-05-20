@@ -1,6 +1,5 @@
 package com.panyilin.robot.utils;
 import java.io.StringReader;
-import java.util.List;
 import java.util.Objects;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -15,6 +14,7 @@ import org.xml.sax.InputSource;
 import com.alibaba.fastjson.JSONObject;
 
 import cn.zhouyafeng.itchat4j.api.WechatTools;
+import cn.zhouyafeng.itchat4j.beans.BaseMsg;
 import cn.zhouyafeng.itchat4j.core.Core;
 
 public class MyUtils {
@@ -46,6 +46,15 @@ public class MyUtils {
 		}
 		return name;
 	}
+	
+	public static String getDisplayName(BaseMsg msg) {
+		if(!msg.isGroupMsg()) {
+			return getDisplayedNameByUserName(msg.getFromUserName());
+		}else {
+			return String.format("<%s@%s>", getDisplayedNameByUserName(msg.getRealFrom()), getDisplayedNameByUserName(msg.getFromUserName()));
+		}
+	}
+	
 	
 	public static String getDisplayedNameByUserName2(String userName) {
 		String name = "";

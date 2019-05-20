@@ -10,18 +10,21 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import cn.zhouyafeng.itchat4j.api.MessageTools;
+import cn.zhouyafeng.itchat4j.core.Core;
 
 public class SendMsgJob implements Job{
 
 	Logger logger = LoggerFactory.getLogger(SendMsgJob.class);
 
-	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd HH:MM:SS");
+	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	
+	Core core = Core.getInstance();
 
     @Override
     public void execute(JobExecutionContext jobExecutionContext) throws JobExecutionException {
         String msg = String.format("心跳检测： %s", sdf.format(new Date()));
-    	MessageTools.sendMsgById(msg, "filehelper");
-    	logger.info("清理消息缓存。");
+    	MessageTools.sendMsgById(msg, core.getUserName());
+    	logger.info(msg);
     }
 
 }

@@ -4,6 +4,7 @@ package com.panyilin.wechat;
 import org.quartz.SchedulerException;
 
 import com.panyilin.robot.job.ClearJob;
+import com.panyilin.robot.job.SendMsgJob;
 import com.panyilin.robot.scheduler.QuartzScheduler;
 
 import cn.zhouyafeng.itchat4j.Wechat;
@@ -19,8 +20,8 @@ public class Main {
  		Thread.sleep(5000);
 
   		QuartzScheduler scheduler = QuartzScheduler.getInstance();
-  		scheduler.config(ClearJob.class, "0 5 * * * ?");
-  		scheduler.config(ClearJob.class, "0 1 * * * ?");
+  		scheduler.config(ClearJob.class,   "0 0/10 * * * ?");
+  		scheduler.config(SendMsgJob.class, "0 0 0/1 * * ?");
   		scheduler.start();
 // 		String groupId = Test.getGroupIdByNickName("老友记");
 //		WechatTools.sendMsgByUserName("大家好啊", groupId);

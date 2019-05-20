@@ -4,6 +4,7 @@ import org.quartz.CronScheduleBuilder;
 import org.quartz.CronTrigger;
 import org.quartz.Job;
 import org.quartz.JobBuilder;
+import org.quartz.JobDataMap;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
@@ -41,9 +42,9 @@ public class QuartzScheduler {
         		//withIdentity("cronTriggerDetail", "cronTriggerDetailGrounp").
         		build();
 
-//        JobDataMap jobDataMap = jobDetail.getJobDataMap();
-//        jobDataMap.put("name", "cronTriggerMap");
-//        jobDataMap.put("group", "cronTriggerGrounp");
+        JobDataMap jobDataMap = jobDetail.getJobDataMap();
+        jobDataMap.put("name", "cronTriggerMap");
+        jobDataMap.put("group", "cronTriggerGrounp");
 
         CronTrigger cronTrigger = TriggerBuilder.
                                     newTrigger().
