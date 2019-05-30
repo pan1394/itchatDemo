@@ -28,7 +28,7 @@ public class Main {
 
   		QuartzScheduler scheduler = QuartzScheduler.getInstance();
   		scheduler.config(ClearJob.class,   "0 0/10 * * * ?");
-  		scheduler.config(SendMsgJob.class, "0 0 0/1 * * ?");
+  		scheduler.config(SendMsgJob.class, "0 0 0/2 * * ?");
   		scheduler.start();
 // 		String groupId = Test.getGroupIdByNickName("老友记");
 //		WechatTools.sendMsgByUserName("大家好啊", groupId);
@@ -41,7 +41,7 @@ public class Main {
 		
 		private UserRobotMap map = new UserRobotMap();
 		
-		private Logger logger = LoggerFactory.getLogger(DemoHandler.class);
+		private Logger logger = LoggerFactory.getLogger(MyHandler.class);
 		
 		@Override
 		public String textMsgHandle(BaseMsg msg) {
