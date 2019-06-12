@@ -14,6 +14,7 @@ import com.panyilin.robot.utils.MyUtils;
 
 import cn.zhouyafeng.itchat4j.Wechat;
 import cn.zhouyafeng.itchat4j.api.MessageTools;
+import cn.zhouyafeng.itchat4j.api.WechatTools;
 import cn.zhouyafeng.itchat4j.beans.BaseMsg;
 import cn.zhouyafeng.itchat4j.core.Core;
 import cn.zhouyafeng.itchat4j.utils.enums.MsgTypeEnum;
@@ -21,18 +22,21 @@ import cn.zhouyafeng.itchat4j.utils.enums.MsgTypeEnum;
 public class Main {
 	 
 	public static void main(String[] args) throws InterruptedException, SchedulerException {
-		Wechat wechat = new Wechat(new MyHandler(), "D://");
+		Wechat wechat = new Wechat(new MyHandler(), null);
 		wechat.start();
 
  		Thread.sleep(5000);
 
+ 		
+ 		//String groupId = MyUtils.getGroupIdByNickName("老友记");
+		//WechatTools.sendMsgByUserName("大家好啊", groupId);
+		//MessageTools.sendPicMsgByUserId(groupId, "D://sun.7z");
+		
   		QuartzScheduler scheduler = QuartzScheduler.getInstance();
   		scheduler.config(ClearJob.class,   "0 0/10 * * * ?");
   		scheduler.config(SendMsgJob.class, "0 0 0/2 * * ?");
   		scheduler.start();
-// 		String groupId = Test.getGroupIdByNickName("老友记");
-//		WechatTools.sendMsgByUserName("大家好啊", groupId);
-//		MessageTools.sendPicMsgByUserId(groupId, "D:/QR.jpg");
+  		 
 	}
 
 	private static class MyHandler extends MsgHandlerAdapter{
